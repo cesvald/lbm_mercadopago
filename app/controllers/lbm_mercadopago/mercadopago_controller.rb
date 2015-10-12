@@ -91,7 +91,7 @@ module LbmMercadopago
         if params[:topic] == 'payment'
           payment_info = $mp.get_payment(params[:id])
           puts payment_info
-          merchant_order_info = $mp.get("/merchant_orders/" + payment_info["response"]["collection"]["merchant_order_id"])
+          merchant_order_info = $mp.get("/merchant_orders/" + payment_info["response"]["collection"]["merchant_order_id"].to_s)
           puts merchant_order_info
           backer = Backer.find(merchant_order_info["response"]["additional_info"]["backer_id"])
           if backer
