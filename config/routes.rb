@@ -1,5 +1,4 @@
 LbmMercadopago::Engine.routes.draw do
-	root :to => 'mercadopago#review'
 	resources :mercadopago do
 	  collection do
 	    get :notification
