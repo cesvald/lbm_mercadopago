@@ -8,9 +8,9 @@ module LbmMercadopago
   	require 'mercadopago.rb'
 
   	def review
-      #backer = current_user.backs.not_confirmed.find params[:id]
-      #if backer
-        #backer.update_attribute :payment_method, 'MercadoPago'
+      backer = current_user.backs.not_confirmed.find params[:id]
+      if backer
+        backer.update_attribute :payment_method, 'MercadoPago'
         
         #$mp = MercadoPago.new('1568386747490384', '5Z2hY446SdjpFPYGd8MSjj5UgkgdiNZc')
         $mp = MercadoPago.new('7422021614487510', 'BCTEIO9Qrsi40b26ruvIlmkYKPt2UEyG')
@@ -18,20 +18,20 @@ module LbmMercadopago
     		preference_data = {
           items: [
               {
-              	title: 'probando',
-                  #title: t('payulatam_description', scope: SCOPE, :project_name => backer.project.name, :value => backer.display_value),
+                title: t('payulatam_description', scope: SCOPE, :project_name => backer.project.name, :value => backer.display_value),
+                #title: 'probando',
                 quantity: 1,
-                unit_price: 25000,
-                  #unit_price: backer.value,
-                  #currency_id: t('number.currency.format.unit')
-                currency_id: 'COP'
+                unit_price: backer.value,
+                #unit_price: 25000,
+                currency_id: t('number.currency.format.unit')
+                #currency_id: 'COP'
               }
           ],
           payer: {
-          	email: 'valderramago@gmail.com',
-          	nombre: 'Cesar Valderrama'
-            #email: current_user.email,
-            #nombre: current_user.name
+          	#email: 'valderramago@gmail.com',
+          	#nombre: 'Cesar Valderrama'
+            email: current_user.email,
+            nombre: current_user.name
           },
           back_urls: {
             success: respond_mercadopago_index_url,
@@ -42,7 +42,7 @@ module LbmMercadopago
         }
         @preference = $mp.create_preference(preference_data)
         puts @preference
-      #end
+      end
   	end
 
     def respond
