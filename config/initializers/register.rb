@@ -1,0 +1,1 @@
+PaymentEngines.register({name: 'mercadopago', review_path: ->(backer){ LbmMercadopago::Engine.routes.url_helpers.review_mercadopago_path(backer) }, locale: 'es'})

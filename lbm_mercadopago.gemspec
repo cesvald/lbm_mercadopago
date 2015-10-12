@@ -7,11 +7,11 @@ require "lbm_mercadopago/version"
 Gem::Specification.new do |s|
   s.name        = "lbm_mercadopago"
   s.version     = LbmMercadopago::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of LbmMercadopago."
-  s.description = "TODO: Description of LbmMercadopago."
+  s.authors     = ["Cesar Valderrama"]
+  s.email       = ["valderramago@gmail.com"]
+  s.homepage    = "https://github.com/cesvald/lbm_mercadopago"
+  s.summary     = "Mercado integrated to little big money"
+  s.description = "Mercado integrated to little big money"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
