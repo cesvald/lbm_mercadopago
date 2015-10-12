@@ -1,1 +1,3 @@
-<%= link_to t('payulatam_submit'), @preference['response']['init_point'] %>
+<div class="inbox-sf-add-btn tip">
+<%= button_to t('payulatam_submit', scope: 'projects.backers.checkout'), @preference['response']['init_point'], class: "btn btn-primary btn-large" %>
+</div>

@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     lbm_mercadopago (0.0.1)
+      mercadopago-sdk
       rails (~> 3.2.12)
 
 GEM
