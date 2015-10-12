@@ -45,6 +45,9 @@ module LbmMercadopago
             pending: respond_mercadopago_url(backer),
             failure: respond_mercadopago_url(backer)
           },
+          additional_info: {
+          	backer_id: backer.id
+          },
           notification_url: notification_mercadopago_index_url
         }
         @preference = $mp.create_preference(preference_data)
@@ -82,13 +85,15 @@ module LbmMercadopago
     def notification
       if params[:topic] && params[:id]
 
-        $mp = MercadoPago.new('1568386747490384', '5Z2hY446SdjpFPYGd8MSjj5UgkgdiNZc')
+        $mp = MercadoPago.new('7422021614487510', 'BCTEIO9Qrsi40b26ruvIlmkYKPt2UEyG')
         merchant_order_info = nil
 
         if params[:topic] == 'payment'
           payment_info = $mp.get_payment(params[:id])
+          puts payment_info
           merchant_order_info = $mp.get("/merchant_orders/" + payment_info["response"]["collection"]["merchant_order_id"])
-          backer = Backer.find(merchant_order_info["additional_info"]["backer_id"])
+          puts merchant_order_info
+          backer = Backer.find(merchant_order_info["response"]["additional_info"]["backer_id"])
           if backer
             case payment_info["status"]
             when 'approved'
