@@ -1,7 +1,7 @@
 LbmMercadopago::Engine.routes.draw do
 	resources :mercadopago do
 	  collection do
-	    get :notification
+	    post :notification
 	    get :create_user
 	    get :pay
 	  end
