@@ -93,7 +93,7 @@ module LbmMercadopago
           puts merchant_order_info
           backer = Backer.find(merchant_order_info["response"]["additional_info"])
           if backer
-            case payment_info["status"]
+            case payment_info["response"]["status"]
             when 'approved'
               backer.confirm!
             when 'cancelled'
