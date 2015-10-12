@@ -10,7 +10,7 @@ module LbmMercadopago
   	def review
       backer = current_user.backs.not_confirmed.find params[:id]
       if backer
-        #backer.update_attribute :payment_method, 'MercadoPago'
+        backer.update_attribute :payment_method, 'MercadoPago'
         
         #$mp = MercadoPago.new('1568386747490384', '5Z2hY446SdjpFPYGd8MSjj5UgkgdiNZc')
         $mp = MercadoPago.new('7422021614487510', 'BCTEIO9Qrsi40b26ruvIlmkYKPt2UEyG')
