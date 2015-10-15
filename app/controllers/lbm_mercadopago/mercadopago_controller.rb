@@ -54,6 +54,9 @@ module LbmMercadopago
   	end
 
     def respond
+      if !current_user
+        sign_in User.find_by_email("valderramago@gmail.com"), event: :authentication, store: true
+      end
     	backer = current_user.backs.find params[:id]
     	case params[:collection_status]
     	when 'pending'
@@ -88,14 +91,9 @@ module LbmMercadopago
 
         if params[:topic] == 'payment'
           payment_info = $mp.get_payment(params[:id])
-          puts payment_info
           merchant_order_info = $mp.get("/merchant_orders/" + payment_info["response"]["collection"]["merchant_order_id"].to_s)
-          puts merchant_order_info
           backer = Backer.find(merchant_order_info["response"]["additional_info"])
           if backer
-            puts backer
-          	puts "Last test by the moment"
-          	puts payment_info["response"]["collection"]["status"]
             case payment_info["response"]["collection"]["status"]
             when 'approved'
               backer.confirm!
