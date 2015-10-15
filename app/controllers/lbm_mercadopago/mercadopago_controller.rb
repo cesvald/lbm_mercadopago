@@ -93,6 +93,8 @@ module LbmMercadopago
           puts merchant_order_info
           backer = Backer.find(merchant_order_info["response"]["additional_info"])
           if backer
+          	puts "Last test by the moment"
+          	puts payment_info["response"]["status"]
             case payment_info["response"]["status"]
             when 'approved'
               backer.confirm!
