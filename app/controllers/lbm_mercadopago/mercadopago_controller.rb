@@ -26,7 +26,7 @@ module LbmMercadopago
           items: [
               {
               	#title: 'probando',
-                title: t('payulatam_description', scope: SCOPE, :project_name => backer.project.name, :value => backer.display_value),
+                title: t('mercadopago_description', scope: SCOPE, :project_name => backer.project.name, :value => backer.display_value),
                 quantity: 1,
                 #unit_price: 25000,
                 unit_price: backer.value.to_i,
@@ -94,6 +94,8 @@ module LbmMercadopago
           merchant_order_info = $mp.get("/merchant_orders/" + payment_info["response"]["collection"]["merchant_order_id"].to_s)
           backer = Backer.find(merchant_order_info["response"]["additional_info"])
           if backer
+            PaymentEngines.update_or_create_payment_notification backer_id: backer.id, extra_data: payment_info["response"]["collection"]
+            backer.update_attribute :payment_id, payment_info["response"]["collection"]["id"] unless !backer.payment_id.nil?
             case payment_info["response"]["collection"]["status"]
             when 'approved'
               backer.confirm!
