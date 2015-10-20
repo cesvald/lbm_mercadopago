@@ -4,6 +4,6 @@
 	</h3>
 	<div class="bootstrap-twitter">
 		<img src="https://mercadopago.mlstatic.com/images/desktop-logo-mercadopago.png"/>
-		<%= button_to t('mercadopago_submit', scope: 'projects.backers.checkout'), @preference['response']['init_point'], class: "btn btn-primary btn-large" %>
+		<%= link_to t('mercadopago_submit', scope: 'projects.backers.checkout'), @preference['response']['init_point'], class: "btn btn-primary btn-large" %>
 	</div>
 </div>
